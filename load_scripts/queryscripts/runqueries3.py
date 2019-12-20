@@ -16,7 +16,7 @@ with driver.session() as session:
         with session.begin_transaction() as tx:
             
             for id in random_ids:
-                result = tx.run("MATCH (u:User {user_id :" + str(id) + "}) RETURN u.AGE")
+                result = tx.run("MATCH (u:User {user_id :" + str(id) + "})-[:Friend]->(f:User) RETURN f.user_id")
                 avail = result.summary().result_available_after
                 cons = result.summary().result_consumed_after
                 
@@ -26,5 +26,5 @@ with driver.session() as session:
 avg_time = total_time / (repeats - 1)
 print('Average execution time:' +  str(avg_time / 1000) + 'seconds')
 
-with open("./results/resultquery1.txt", "a") as file:
+with open("./results/resultquery3.txt", "a") as file:
     file.write('Average execution time: ' +  str(avg_time/ 1000) + ' seconds')
