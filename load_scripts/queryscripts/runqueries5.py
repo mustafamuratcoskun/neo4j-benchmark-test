@@ -1,14 +1,7 @@
-# This Script Measures Time When Query : "Find 1000 users with random ids and get their ages"
-
 from neo4j import GraphDatabase
 import time
 import get_random
-"""
-MATCH (user:User {user_id: 2})-[:Friend*2]->(fof:User)
-            WHERE NOT (user:User)-[:Friend]->(fof:User) 
-            RETURN count(distinct fof.user_id)
 
-"""
 
 driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'benchmark'))
 
@@ -21,9 +14,7 @@ with driver.session() as session:
         with session.begin_transaction() as tx:
             
             for id in random_ids:
-                result = tx.run("MATCH (user:User {user_id:" + str(id) + "})-[:Friend*2]->(fof:User)" +
-                                "WHERE NOT (user:User)-[:Friend]->(fof:User)" + 
-                                "RETURN count(distinct fof.user_id)")
+                result = tx.run("MATCH (u:User {user_id :" + str(id) + "}) SET u.AGE = u.AGE + 1")
                 avail = result.summary().result_available_after
                 cons = result.summary().result_consumed_after
                 
@@ -33,5 +24,5 @@ with driver.session() as session:
 avg_time = total_time / (repeats - 1)
 print('Average execution time:' +  str(avg_time / 1000) + 'seconds')
 
-with open("./results/resultquery4.txt", "a") as file:
+with open("./results/resultquery5.txt", "a") as file:
     file.write('Average execution time: ' +  str(avg_time/ 1000) + ' seconds')
