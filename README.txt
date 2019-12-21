@@ -137,11 +137,6 @@ Total Index Size Of The Database: 404Kb. You can measure this size executing the
 that we use while measuring graph.db size before.
 ------------------------------------------------------------------------
 
-Create Index
-----------------------------------------
-
-
-
 Run benchmark
 ----------------------------------------
 # Warm up NEO4J, wait until finshed and keep the cypher-shell open(warm up may take a long time)
