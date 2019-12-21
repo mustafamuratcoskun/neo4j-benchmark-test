@@ -4,13 +4,13 @@ from neo4j import GraphDatabase
 import time
 import get_random
 
-
 driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'benchmark'))
 
 repeats = 10
 
 with driver.session() as session:
     total_time = 0
+    cold_startup = 0
     random_ids = get_random.getRandomIds(1000)
     for repeat in range(repeats):
         with session.begin_transaction() as tx:
@@ -22,9 +22,10 @@ with driver.session() as session:
                 
                 if (repeat != 0):
                     total_time += avail + cons
+                
 
 avg_time = total_time / (repeats - 1)
 print('Average execution time:' +  str(avg_time / 1000) + 'seconds')
 
-with open("./results/resultquery1.txt", "a") as file:
+with open("./results-without-index/resultquery1.txt", "a") as file:
     file.write('Average execution time: ' +  str(avg_time/ 1000) + ' seconds')

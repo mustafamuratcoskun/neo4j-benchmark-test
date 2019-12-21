@@ -33,5 +33,5 @@ with driver.session() as session:
 avg_time = total_time / (repeats - 1)
 print('Average execution time:' +  str(avg_time / 1000) + 'seconds')
 
-with open("./results/resultquery4.txt", "a") as file:
+with open("./results-without-index/resultquery4.txt", "a") as file:
     file.write('Average execution time: ' +  str(avg_time/ 1000) + ' seconds')
