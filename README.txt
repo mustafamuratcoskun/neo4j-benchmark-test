@@ -6,7 +6,7 @@ Dataset is not available in this repository because the size is huge.
 --------------------------------------
 Pokec Social Network Benchmark Dataset
 
-Hardware & Major enviroment
+Hardware & Major environment
 ---------------------------------------
 Model Name:	MacBook Pro
 Model Identifier:	MacBookPro11,3
@@ -139,6 +139,66 @@ that we use while measuring graph.db size before.
 
 Run benchmark
 ----------------------------------------
-# Warm up NEO4J, wait until finshed and keep the cypher-shell open(warm up may take a long time)
+# Warm up NEO4J, wait until finished and keep the cypher-shell open(warm up may take a long time)
 neo4j>call apoc.warmup.run(true, true);
+
+After warming up, I test different queriest for 10 times and calculate their averages, output results to
+./load_scripts/queryscripts/result-with-index/*resultquery*.txt and 
+./load_scripts/queryscripts/result-without-index/*resultquery*.txt.
+---------------------------------------------------------------------------
+Results Without Index
+
+# Query 1
+"Find 10000 users with ids and get their ages"
+Average execution time: 2.3032222222222223 seconds
+
+# Query 2
+"Return All Friend Relationship Count In Graph.db"
+Average execution time: 87.831 seconds
+
+# Query 3
+"Find Friends Of 1000 users with ids and get friends' user_id"
+Average execution time: 4.0456999999999996 seconds
+
+# Query 4
+"Find Friends Of Friends of 1000 users with ids"
+Average execution time: 45.91822222222222 seconds
+
+# Query 5
+"Find 10000 users with ids and update their age by 1"
+Average execution time: 20.3614444444444445 seconds
+
+# Query 6
+"Find Between Shortest Path Of 1000 Different Users"
+Average execution time: 14.773444444444445 seconds
+---------------------------------------------------------------------------
+
+Results With Index
+
+# Query 1
+"Find 10000 users with ids and get their ages"
+Average execution time: 1.2232432 seconds
+
+# Query 2
+"Return All Friend Relationship Count In Graph.db"
+Average execution time: 56.831 seconds
+
+# Query 3
+"Find Friends Of 1000 users with ids and get friends' user_id"
+Average execution time: 3.27726 seconds
+
+# Query 4
+"Find Friends Of Friends of 1000 users with ids"
+Average execution time: 32.63756 seconds
+
+# Query 5
+"Find 10000 users with ids and update their age by 1"
+Average execution time: 17.86121 seconds
+
+# Query 6
+"Find Between Shortest Path Of 1000 Different Users"
+Average execution time: 8.723723232 seconds
+---------------------------------------------------------------------------
+
+Detailed Benchmark Report can be found in ./benchmark-report.pdf
 
