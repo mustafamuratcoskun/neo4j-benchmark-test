@@ -18,11 +18,11 @@ with driver.session() as session:
             avail = result.summary().result_available_after
             cons = result.summary().result_consumed_after
                 
-            if (repeat != 0):
-                total_time += avail + cons
+            
+            total_time += avail + cons
             
 
-avg_time = total_time / (repeats - 1)
+avg_time = total_time / (repeats)
 
 print('Average execution time:', str(avg_time / 1000), 'seconds')
 
