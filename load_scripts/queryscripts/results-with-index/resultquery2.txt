@@ -1,0 +1,1 @@
+Average execution time: 56.831 seconds

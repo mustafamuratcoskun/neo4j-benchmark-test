@@ -1,4 +1,4 @@
-# This Script Measures Time When Query : "Find 10000 users with random ids and get their ages"
+# This Script Measures Time When Query : "Find Friends Of 1000 users with ids and get friends' user_id"
  
 from neo4j import GraphDatabase
 import time
@@ -11,7 +11,7 @@ repeats = 10
 
 with driver.session() as session:
     total_time = 0
-    random_ids = get_random.getRandomIds(1000)
+    random_ids = get_random.getRandomIds(10000)
     for repeat in range(repeats):
         with session.begin_transaction() as tx:
             

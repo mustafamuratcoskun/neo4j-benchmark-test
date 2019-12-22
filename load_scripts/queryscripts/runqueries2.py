@@ -1,4 +1,5 @@
-# This Script Measures Time When Query : "Find 10000 users with random ids and get their ages"
+# This Script Measures Time When Query : "Return All Friend Relationship Count In Graph.db"
+
  
 from neo4j import GraphDatabase
 import time

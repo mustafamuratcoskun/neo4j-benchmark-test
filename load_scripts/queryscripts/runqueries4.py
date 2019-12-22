@@ -1,14 +1,9 @@
-# This Script Measures Time When Query : "Find 1000 users with random ids and get their ages"
+# This Script Measures Time When Query : "Find Friends Of Friends of 1000 users with ids"
 
 from neo4j import GraphDatabase
 import time
 import get_random
-"""
-MATCH (user:User {user_id: 2})-[:Friend*2]->(fof:User)
-            WHERE NOT (user:User)-[:Friend]->(fof:User) 
-            RETURN count(distinct fof.user_id)
 
-"""
 
 driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'benchmark'))
 

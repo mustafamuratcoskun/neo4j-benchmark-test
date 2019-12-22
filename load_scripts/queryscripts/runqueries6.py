@@ -1,13 +1,8 @@
-# This Script Measures Time When Query : "Find 10000 users with random ids and get their ages"
+# This script Measures Time When Query : "Find Between Shortest Path Of 1000 Different Users"
  
 from neo4j import GraphDatabase
 import time
 import get_random
-
-#cypher_query = """MATCH (user1:User {user_id:14}),(user2:User {user_id: 1000}),
-#p = shortestPath((user1)-[*..15]-(user2))
-#RETURN length(p)"""
-
 
 driver = GraphDatabase.driver('bolt://localhost:7687', auth=('neo4j', 'benchmark'))
 

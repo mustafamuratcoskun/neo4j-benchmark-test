@@ -1,3 +1,5 @@
+# This Script Measures Time When Query : "Find 10000 users with ids and update their age by 1"
+
 from neo4j import GraphDatabase
 import time
 import get_random
@@ -9,7 +11,7 @@ repeats = 10
 
 with driver.session() as session:
     total_time = 0
-    random_ids = get_random.getRandomIds(1000)
+    random_ids = get_random.getRandomIds(10000)
     for repeat in range(repeats):
         with session.begin_transaction() as tx:
             
